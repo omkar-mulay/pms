@@ -16,10 +16,10 @@ public class Login {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int loginid;
 	
-	@Column
+	@Column(name="username")
 	String username;
 	
-	@Column
+	@Column(name="password")
 	String password;
 	
 	@Column

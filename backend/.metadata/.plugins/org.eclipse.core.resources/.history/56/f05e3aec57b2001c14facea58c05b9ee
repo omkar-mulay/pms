@@ -1,0 +1,44 @@
+package com.example.demo.entities;
+
+import java.util.Date;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name = "project")
+public class Project {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	int projectid;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="empid")
+	Employee managerid;
+	
+	@Column
+	String project_name;
+	
+	@Column
+	String project_desc;
+	
+	@Column
+	Date start_date;
+	
+	@Column
+	Date end_date;
+	
+	@Column
+	Client clientid;
+	
+
+}

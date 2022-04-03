@@ -2,7 +2,7 @@ package com.example.demo.entities;
 
 public class EmployeeRegister {
 
-	String username, password, fname, lname, email, contactno;
+	String username, password, fname, lname, email, contactno, role;
 
 	public EmployeeRegister() {
 		super();
@@ -10,7 +10,7 @@ public class EmployeeRegister {
 	}
 
 	public EmployeeRegister(String username, String password, String fname, String lname, String email,
-			String contactno) {
+			String contactno, String role) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -18,7 +18,7 @@ public class EmployeeRegister {
 		this.lname = lname;
 		this.email = email;
 		this.contactno = contactno;
-		//this.regtime = regtime;
+		this.role = role;
 	}
 
 	public String getUsername() {
@@ -69,6 +69,20 @@ public class EmployeeRegister {
 		this.contactno = contactno;
 	}
 
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	@Override
+	public String toString() {
+		return "EmployeeRegister [username=" + username + ", password=" + password + ", fname=" + fname + ", lname="
+				+ lname + ", email=" + email + ", contactno=" + contactno + ", role=" + role + "]";
+	}
+	
 //	public String getRegtime() {
 //		return regtime;
 //	}
@@ -77,11 +91,7 @@ public class EmployeeRegister {
 //		this.regtime = regtime;
 //	}
 
-	@Override
-	public String toString() {
-		return "EmployeeRegister [username=" + username + ", password=" + password + ", fname=" + fname + ", lname="
-				+ lname + ", email=" + email + ", contactno=" + contactno + "]";
-	}
+	
 	
 	
 }

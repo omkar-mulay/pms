@@ -19,4 +19,8 @@ public class EmployeeService {
 	public Employee add(Employee e) {
 		return erepo.save(e);
 	}
+	
+	public int updateAccount(String fname, String lname, String email, String contactno, int empid) {
+		return erepo.updateAccount(fname, lname, email, contactno, empid);
+	}
 }

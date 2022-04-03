@@ -1,0 +1,130 @@
+package com.example.demo.entities;
+
+import java.util.Date;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name = "project")
+public class Project {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	int projectid;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="empid")
+	Employee managerid;
+	
+	@Column
+	String project_name;
+	
+	@Column
+	String project_desc;
+	
+	@Column
+	Date start_date;
+	
+	@Column
+	Date end_date;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="clientid")
+	Client clientid;
+
+	public Project() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	
+
+	public Project(Employee managerid, String project_name, String project_desc, Date start_date, Date end_date,
+			Client clientid) {
+		super();
+		this.managerid = managerid;
+		this.project_name = project_name;
+		this.project_desc = project_desc;
+		this.start_date = start_date;
+		this.end_date = end_date;
+		this.clientid = clientid;
+	}
+
+
+
+	public int getProjectid() {
+		return projectid;
+	}
+
+	public void setProjectid(int projectid) {
+		this.projectid = projectid;
+	}
+
+	public Employee getManagerid() {
+		return managerid;
+	}
+
+	public void setManagerid(Employee managerid) {
+		this.managerid = managerid;
+	}
+
+	public String getProject_name() {
+		return project_name;
+	}
+
+	public void setProject_name(String project_name) {
+		this.project_name = project_name;
+	}
+
+	public String getProject_desc() {
+		return project_desc;
+	}
+
+	public void setProject_desc(String project_desc) {
+		this.project_desc = project_desc;
+	}
+
+	public Date getStart_date() {
+		return start_date;
+	}
+
+	public void setStart_date(Date start_date) {
+		this.start_date = start_date;
+	}
+
+	public Date getEnd_date() {
+		return end_date;
+	}
+
+	public void setEnd_date(Date end_date) {
+		this.end_date = end_date;
+	}
+
+	public Client getClientid() {
+		return clientid;
+	}
+
+	public void setClientid(Client clientid) {
+		this.clientid = clientid;
+	}
+
+	@Override
+	public String toString() {
+		return "Project [projectid=" + projectid + ", managerid=" + managerid + ", project_name=" + project_name
+				+ ", project_desc=" + project_desc + ", start_date=" + start_date + ", end_date=" + end_date
+				+ ", clientid=" + clientid + "]";
+	}
+	
+	
+
+}

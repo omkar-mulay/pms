@@ -33,5 +33,9 @@ public class LoginService {
 	public Login add(Login l) {
 		return lrepo.save(l);
 	}
+	
+	public int updatePassword(String password, String username) {
+		return lrepo.updatePassword(password, username);
+	}
 
 }

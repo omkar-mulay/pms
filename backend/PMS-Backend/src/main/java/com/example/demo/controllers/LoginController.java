@@ -19,5 +19,10 @@ public class LoginController {
 	public Object checkLogin(@RequestBody Login l) {
 		return lservice.checkLogin(l.getUsername(), l.getPassword());
 	}
+	
+	@PostMapping("/update_password")
+	public int updatePassword(@RequestBody String password, String username) {
+		return lservice.updatePassword(password, username);
+	}
 
 }

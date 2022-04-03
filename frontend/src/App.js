@@ -14,7 +14,7 @@ function App() {
     <div className='App'>
       <h1>Welcome</h1> <br/>
       <Link to="/login">Login</Link> <br/>
-      <Link to="/Registration">Registration</Link> <br/>
+      
       <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/Admin" element={<Admin />} />
