@@ -24,4 +24,12 @@ public interface ProjectRepositry extends JpaRepository<Project, Integer> {
 	@Query(value="update project p set p.managerid = ?1, p.projectname = ?2, p.project_desc = ?3, p.enddate = ?4 where p.projectid = ?5" , nativeQuery = true)
 	public int updateProjectById(int managerid, String projectname, String project_desc, String enddate,int projectid);
 	
+	@Query(value="select * from project where projectname = ?1", nativeQuery = true)
+	public Project searchByProjectName(String projectname);
+	
+	@Query(value="select * from project where managerid = ?1", nativeQuery = true)
+	public List<Project> searchByManagerId(int managerid);
+	
+	@Query(value="select * from project where clientid = ?1", nativeQuery = true)
+	public List<Project> searchByClientId(int clientid);
 }

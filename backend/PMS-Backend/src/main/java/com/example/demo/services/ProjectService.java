@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,4 +26,21 @@ public class ProjectService {
 	public int updateProject(int managerid, String projectname, String project_desc, String enddate,int projectid) {
 		return prepo.updateProjectById(managerid, projectname, project_desc, enddate, projectid);
 	}
+	
+	public List<Project> showAllProjects(){
+		return prepo.findAll();
+	}
+	
+	public Project searchByProjectName(String projectname) {
+		return prepo.searchByProjectName(projectname);
+	}
+	
+	public List<Project> searchByManagerId(int managerid) {
+		return prepo.searchByManagerId(managerid);
+	}
+	
+	public List<Project> searchByClientId(int clientid) {
+		return prepo.searchByClientId(clientid);
+	}
+	
 }

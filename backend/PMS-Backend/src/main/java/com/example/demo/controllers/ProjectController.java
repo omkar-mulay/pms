@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -35,5 +36,24 @@ public class ProjectController {
 		return pservice.updateProject(managerid, projectname, project_desc, enddate, projectid);
 	}
 	
+	@GetMapping("/show_all_projects")
+	public List<Project> showAllProjects(){
+		return pservice.showAllProjects();
+	}
+	
+	@GetMapping("/search_by_projectname")
+	public Project searchByProjectName(@RequestParam String projectname) {
+		return pservice.searchByProjectName(projectname);
+	}
+	
+	@GetMapping("/search_by_managerid")
+	public List<Project> searchByManagerId(@RequestParam int managerid){
+		return pservice.searchByManagerId(managerid);
+	}
+	
+	@GetMapping("/search_by_clientid")
+	public List<Project> searchByClientId(@RequestParam int clientid){
+		return pservice.searchByClientId(clientid);
+	}
 	
 }
