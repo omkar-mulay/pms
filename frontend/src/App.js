@@ -7,6 +7,7 @@ import Client from './component/Client';
 import Manager from './component/Manager';
 import Employee from './component/Employee';
 import Registration from './component/Registration';
+import CreateProject from './component/CreateProject';
 //import MainMenu from './components/MainMenu';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="/Manager" element={<Manager />} />
           <Route path="/Employee" element={<Employee />} />
           <Route path="/Registration" element={<Registration />} />
+          <Route path="/CreateProject" element={<CreateProject />} />
       </Routes>
     </div>
     )}

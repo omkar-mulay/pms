@@ -5,6 +5,7 @@ function Admin() {
         <div className="container">
             <h1>Welcome Admin</h1>
             <Link to="/Registration">Registration</Link> <br/>
+            <Link to="/CreateProject">Create Project</Link> <br/>
         </div>
         
     );

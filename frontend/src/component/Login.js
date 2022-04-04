@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import mystore from './store';
+import { Form, Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 
 function Login() {
 
@@ -55,7 +56,7 @@ function Login() {
 
     return (
         <div className="container">
-                <form>
+                {/* <form>
                 <h3>Sign In</h3>
                 <div className="form-group">
                     <label>User ID</label>
@@ -69,7 +70,27 @@ function Login() {
                     <button type="submit" className="btn btn-primary btn-block" onClick={(ev)=>submitForm(ev)}>Submit</button>
                 </div>
                 <br/><br/>
-            </form>
+            </form> */}
+            <Form>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Enter Username</Form.Label>
+                    <Form.Control type="text" name="username" placeholder="Enter username" onChange={(ev)=>setUsername(ev.target.value) }/>
+                    {/* <Form.Text className="text-muted">
+                    We'll never share your email with anyone else.
+                    </Form.Text> */}
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label>Enter Password</Form.Label>
+                    <Form.Control type="password" name="password" placeholder="Password" onChange={(ev)=>setPassword(ev.target.value) }/>
+                </Form.Group>
+                {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                    <Form.Check type="checkbox" label="Check me out" />
+                </Form.Group> */}
+                <Button variant="primary" type="submit" onClick={(ev)=>submitForm(ev)}>
+                    Login
+                </Button>
+            </Form>
             
             </div>
     );
