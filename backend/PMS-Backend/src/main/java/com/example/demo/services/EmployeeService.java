@@ -1,5 +1,7 @@
 package com.example.demo.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,5 +24,13 @@ public class EmployeeService {
 	
 	public int updateAccount(String fname, String lname, String email, String contactno, int empid) {
 		return erepo.updateAccount(fname, lname, email, contactno, empid);
+	}
+	
+	public List<String> viewAllEmp(){
+		return erepo.viewAllEmp();
+	}
+	
+	public List<String> viewAllManager(){
+		return erepo.viewAllManager();
 	}
 }

@@ -1,5 +1,7 @@
 package com.example.demo.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,5 +21,13 @@ public class ClientService {
 	
 	public Client add(Client c) {
 		return crepo.save(c);
+	}
+	
+	public List<String> viewAllClient(){
+		return crepo.viewAllClient();
+	}
+	
+	public int updateAccount(String fname, String lname, String email, String contactno, int clientid) {
+		return crepo.updateAccount(fname, lname, email, contactno, clientid);
 	}
 }

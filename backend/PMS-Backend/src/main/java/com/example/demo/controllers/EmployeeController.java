@@ -1,5 +1,7 @@
 package com.example.demo.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,8 +37,19 @@ public class EmployeeController {
 		return eservice.add(e);
 	}
 	
-	@GetMapping("/update_account")
+	@GetMapping("/update_employee_account")
 	public int updateAccount(@RequestParam String fname, String lname, String email, String contactno, int empid) {
 		return eservice.updateAccount(fname, lname, email, contactno, empid);
 	}
+	
+	@GetMapping("/view_all_emp")
+	public List<String> viewAllEmp(){
+		return eservice.viewAllEmp();
+	}
+	
+	@GetMapping("/view_all_manager")
+	public List<String> viewAllManager(){
+		return eservice.viewAllManager();
+	}
 }
+

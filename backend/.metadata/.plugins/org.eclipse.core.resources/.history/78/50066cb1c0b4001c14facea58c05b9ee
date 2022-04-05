@@ -1,0 +1,20 @@
+package com.example.demo.repositries;
+
+import javax.transaction.Transactional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import com.example.demo.entities.Task;
+
+@Repository
+@Transactional
+public interface TaskRepositry extends JpaRepository<Task, Integer> {
+	
+	@Modifying
+	@Query(value="update task t set t.task_name = ?1, t.start_date = ?2, t.end_date = ?3, t.description = ?4, t.priority = ?5, t.teammember_id = ?6 where t.taskid = ?7" , nativeQuery = true)
+	public int updateTask(String task_name, String start_date, String end_date, String description, String priority, String teammember_id, int taskid);
+
+}

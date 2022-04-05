@@ -1,0 +1,44 @@
+package com.example.demo.entities;
+
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="task")
+public class Task {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	int taskid;
+	
+	@Column
+	String task_name;
+	
+	@Column
+	Date start_date;
+	
+	@Column
+	Date end_date;
+	
+	@Column
+	int projectid;
+	
+	@Column
+	String status;
+	
+	@Column
+	String description;
+	
+	@Column
+	String priority;
+	
+	@Column
+	int teammember_id;
+	
+}

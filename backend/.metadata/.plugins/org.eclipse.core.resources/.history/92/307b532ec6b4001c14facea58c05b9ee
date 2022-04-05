@@ -1,0 +1,31 @@
+package com.example.demo.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.services.TaskService;
+
+@RestController
+@CrossOrigin(origins="http://localhost:3000")
+public class TaskController {
+
+	@Autowired
+	TaskService taskservice;
+	
+	@GetMapping("/insert_task")
+	public int insertTask(String task_name, String start_date, String end_date, int projectid, String status, String description, String priority, int teammember_id) {
+		return taskservice.insertTask(task_name, start_date, end_date, projectid, status, description, priority, teammember_id);
+	}
+	
+	@GetMapping("/update_task")
+	public int updateTask(String task_name, String start_date, String end_date, String description, String priority, int teammember_id, int taskid) {
+		return taskservice.updateTask(task_name, start_date, end_date, description, priority, teammember_id, taskid);
+	}
+	
+	@GetMapping("delete_task")
+	public int deleteTaskById(int taskid) {
+		return taskservice.deleteTaskById(taskid);
+	}
+}

@@ -1,7 +1,10 @@
 package com.example.demo.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,6 +34,16 @@ public class ClientController {
 		Client c = new Client(cr.getFname(), cr.getLname(), cr.getEmail(), cr.getContactno(), inserted);
 		
 		return cservice.add(c);
+	}
+	
+	@GetMapping("/view_all_client")
+	public List<String> viewAllClient(){
+		return cservice.viewAllClient();
+	}
+	
+	@GetMapping("/update_client_account")
+	public int updateAccount(String fname, String lname, String email, String contactno, int clientid) {
+		return cservice.updateAccount(fname, lname, email, contactno, clientid);
 	}
 	
 	
