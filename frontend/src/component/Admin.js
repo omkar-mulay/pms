@@ -6,17 +6,64 @@ import {
     MDBNavbarLink,
     MDBNavbarToggler,
     MDBContainer,
-    MDBIcon
+    MDBIcon,
+    MDBBtn
   } from 'mdb-react-ui-kit';
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import UpdateProject from "./UpdateProject";
 
 function Admin() {
+    const [projects, setProjects] = useState([])
+
+    let navigate = useNavigate();
+    const[managerid, setManagerId] = useState("");
+    const[projectname, setProjectname] = useState("");
+    const[project_desc, setProjectdesc] = useState("");
+    const[startdate, setStartdate] = useState("");
+    const[enddate, setEnddate] = useState("");
+    const[clientid, setClientid] = useState("");
+
+    const fetchData = () => {
+        fetch("http://localhost:8080/show_all_projects")
+          .then(response => {
+            return response.json()
+          })
+          .then(data => {
+            setProjects(data)
+          })
+    }
+    useEffect(() => {
+        fetchData()
+      }, [])
+
+      const updateProject=(ev, projectid)=>{
+        ev.preventDefault();
+
+        console.log(projectid);
+        const reqOptions = {
+            method: 'GET',
+            headers :{
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify({
+                managerid: managerid,
+                projectname: projectname,
+                project_desc: project_desc,
+                enddate: enddate
+            })
+        }
+    }
+
     return(
+        
         // <div className="container">
         //     <h1>Welcome Admin</h1>
         //     <Link to="/Registration">Registration</Link> <br/>
         //     <Link to="/CreateProject">Create Project</Link> <br/>
         // </div>
         <div className="container">
+            
         <header>
             <MDBNavbar expand='lg' light bgColor='white' fixed>
                 <MDBContainer fluid>
@@ -51,6 +98,37 @@ function Admin() {
                 </MDBContainer>
             </MDBNavbar>
         </header>
+        
+        <table className="table table-bordered table-hover" style={{border: 'solid'}}>
+            <thead>
+                <tr>
+                <th>Manager id</th>
+                <th>Project name</th>
+                <th>Project Description</th>
+                <th>Start date</th>
+                <th>End date</th>
+                <th>Client id</th>
+                </tr>
+            </thead>
+            <tbody>
+                    {
+                        projects.map((projects)=>{
+                            return(
+                                <tr key={projects.projectid}> 
+                                   <td>{projects.managerid}</td> 
+                                   <td>{projects.projectname}</td> 
+                                   <td>{projects.project_desc}</td> 
+                                   <td>{projects.startdate}</td>
+                                   <td>{projects.enddate}</td>
+                                   <td>{projects.clientid}</td>
+                                   <td><MDBBtn type="primary" onClick={(ev)=>updateProject(ev, projects.projectid)}>Update</MDBBtn></td>
+                                </tr>
+                                ) 
+                            })
+                    }
+            </tbody>
+        </table>
+        
         </div>
         
     );
