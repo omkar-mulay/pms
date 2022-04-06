@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import mystore from './store';
 import { Form, Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import { MDBBtn, MDBInput } from 'mdb-react-ui-kit';
 
 function Login() {
 
@@ -56,40 +57,30 @@ function Login() {
 
     return (
         <div className="container">
-                {/* <form>
-                <h3>Sign In</h3>
-                <div className="form-group">
-                    <label>User ID</label>
-                    <input type="text" name="username" className="form-control" placeholder="Enter Username" onChange={(ev)=>setUsername(ev.target.value) } />
-                </div><br/>
-                <div className="form-group">
-                    <label>Password</label>
-                    <input type="password" name="password" className="form-control" placeholder="Enter password" onChange={(ev)=>setPassword(ev.target.value) }/>
-                </div><br/>
-                <div className="form-group">
-                    <button type="submit" className="btn btn-primary btn-block" onClick={(ev)=>submitForm(ev)}>Submit</button>
-                </div>
-                <br/><br/>
-            </form> */}
             <Form>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
+                {/* <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Enter Username</Form.Label>
                     <Form.Control type="text" name="username" placeholder="Enter username" onChange={(ev)=>setUsername(ev.target.value) }/>
-                    {/* <Form.Text className="text-muted">
-                    We'll never share your email with anyone else.
-                    </Form.Text> */}
-                </Form.Group>
+                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Enter Password</Form.Label>
                     <Form.Control type="password" name="password" placeholder="Password" onChange={(ev)=>setPassword(ev.target.value) }/>
                 </Form.Group>
-                {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                <Form.Group className="mb-3" controlId="formBasicCheckbox">
                     <Form.Check type="checkbox" label="Check me out" />
-                </Form.Group> */}
+                </Form.Group> 
                 <Button variant="primary" type="submit" onClick={(ev)=>submitForm(ev)}>
                     Login
-                </Button>
+                </Button>  */}
+                <div style={{ width: '23rem' }}>
+                    <MDBInput label='Enter username' name='username' type='text' size='lg' onChange={(ev)=>setUsername(ev.target.value)}/>
+                    <br />
+
+                    <MDBInput label='Enter password' name='password' type='password' size='lg' onChange={(ev)=>setPassword(ev.target.value)}/>
+                    <br />
+                    <MDBBtn type="submit" onClick={(ev)=>submitForm(ev)}>Login</MDBBtn>
+                </div>
             </Form>
             
             </div>
