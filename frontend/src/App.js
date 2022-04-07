@@ -8,6 +8,7 @@ import Manager from './component/Manager';
 import Employee from './component/Employee';
 import Registration from './component/Registration';
 import CreateProject from './component/CreateProject';
+import InsertTask from './component/InsertTask';
 //import MainMenu from './components/MainMenu';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/Employee" element={<Employee />} />
           <Route path="/Registration" element={<Registration />} />
           <Route path="/CreateProject" element={<CreateProject />} />
+          <Route path="/InsertTask" element={<InsertTask />} />
       </Routes>
     </div>
     )}

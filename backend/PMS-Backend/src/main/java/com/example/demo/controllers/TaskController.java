@@ -29,12 +29,12 @@ public class TaskController {
 	}
 	
 	@GetMapping("/insert_task")
-	public int insertTask(@RequestParam String task_name, String start_date, String end_date, int projectid, String status, String description, String priority, int teammember_id) {
+	public int insertTask(@RequestParam String task_name,@RequestParam String start_date,@RequestParam String end_date,@RequestParam int projectid,@RequestParam String status,@RequestParam String description,@RequestParam String priority,@RequestParam int teammember_id) {
 		return taskservice.insertTask(task_name, start_date, end_date, projectid, status, description, priority, teammember_id);
 	}
 	
 	@GetMapping("/update_task")
-	public int updateTask(@RequestParam String task_name, String start_date, String end_date, String description, String priority, int teammember_id, int taskid) {
+	public int updateTask(@RequestParam String task_name,@RequestParam String start_date,@RequestParam String end_date,@RequestParam String description,@RequestParam String priority,@RequestParam int teammember_id,@RequestParam int taskid) {
 		return taskservice.updateTask(task_name, start_date, end_date, description, priority, teammember_id, taskid);
 	}
 	
