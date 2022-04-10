@@ -46,6 +46,11 @@ public class ProjectController {
 		return pservice.searchByProjectName(projectname);
 	}
 	
+	@GetMapping("/search_by_projectid")
+	public Project searchByProjectId(@RequestParam int projectid) {
+		return pservice.searchByProjectId(projectid);
+	}
+	
 	@GetMapping("/search_by_managerid")
 	public List<Project> searchByManagerId(@RequestParam int managerid){
 		return pservice.searchByManagerId(managerid);

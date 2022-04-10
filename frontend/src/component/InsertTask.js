@@ -25,12 +25,6 @@ function InsertTask(){
     const submitForm=(ev)=>{
         ev.preventDefault();
 
-        const reqOptions = {
-            method: 'GET',
-            headers :{
-                'Content-Type':'application/text'
-            }
-        }
         let url="http://localhost:8080/insert_task?task_name="+task_name+"&&start_date="+start_date+"&&end_date="+end_date+"&&projectid="+projectid+"&&status="+status+"&&description="+description+"&&priority="+priority+"&&teammember_id="+teammember_id;
         alert(url);
         fetch(url)
@@ -43,7 +37,7 @@ function InsertTask(){
  }
 return(
 
-       <div className="Container">
+       <div className="container">
         
         <header>
             <MDBNavbar expand='lg' light bgColor='white' fixed>

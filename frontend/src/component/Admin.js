@@ -31,29 +31,30 @@ function Admin() {
           })
           .then(data => {
             setProjects(data)
+            console.log(data)
           })
     }
     useEffect(() => {
         fetchData()
       }, [])
 
-      const updateProject=(ev, projectid)=>{
-        ev.preventDefault();
+    //   const updateProject=(ev)=>{
+    //     ev.preventDefault();
 
-        console.log(projectid);
-        const reqOptions = {
-            method: 'GET',
-            headers :{
-                'Content-Type':'application/json'
-            },
-            body: JSON.stringify({
-                managerid: managerid,
-                projectname: projectname,
-                project_desc: project_desc,
-                enddate: enddate
-            })
-        }
-    }
+    //     console.log(projectid);
+    //     const reqOptions = {
+    //         method: 'GET',
+    //         headers :{
+    //             'Content-Type':'application/json'
+    //         },
+    //         body: JSON.stringify({
+    //             managerid: managerid,
+    //             projectname: projectname,
+    //             project_desc: project_desc,
+    //             enddate: enddate
+    //         })
+    //     }
+    // }
 
     return(
         
@@ -91,14 +92,20 @@ function Admin() {
                         <MDBNavbarLink href='/CreateProject'>Create Project</MDBNavbarLink>
                     </MDBNavbarItem>
                     <MDBNavbarItem>
-                        <MDBNavbarLink href='#'>Settings</MDBNavbarLink>
+                    <select name="setting" id="setting" className="form-control" onClick={(ev)=>navigate(ev.target.value)}>    
+                        <option value="">Settings </option>
+                        <option value="../UpdateAccount">Update Account Info </option>
+                        <option value="../Logout">Logout</option>
+                        </select>
                     </MDBNavbarItem>
                     </MDBNavbarNav>
                 </div>
                 </MDBContainer>
             </MDBNavbar>
         </header>
-        
+        <br/>
+        <h4 style={{textAlign: 'left'}}>All Projects</h4>
+        <br/>
         <table className="table table-bordered table-hover" style={{border: 'solid'}}>
             <thead>
                 <tr>
@@ -121,7 +128,7 @@ function Admin() {
                                    <td>{projects.startdate}</td>
                                    <td>{projects.enddate}</td>
                                    <td>{projects.clientid}</td>
-                                   <td><MDBBtn type="primary" onClick={(ev)=>updateProject(ev, projects.projectid)}>Update</MDBBtn></td>
+                                   <td><Link className="btn btn-info" to={`/UpdateProject?projectid=${projects.projectid}`} >Update</Link></td>
                                 </tr>
                                 ) 
                             })

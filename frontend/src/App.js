@@ -9,12 +9,16 @@ import Employee from './component/Employee';
 import Registration from './component/Registration';
 import CreateProject from './component/CreateProject';
 import InsertTask from './component/InsertTask';
+import UpdateAccount from './component/UpdateAccount';
+import UpdateProject from './component/UpdateProject';
+import ChangePassword from './component/ChangePassword';
+import Logout from './component/Logout';
 //import MainMenu from './components/MainMenu';
 
 function App() {
     return (
     <div className='App'>
-      <h1>Welcome</h1> <br/>
+      <h1>Project Management System</h1> <br/>
       <Link to="/login">Login</Link> <br/>
       
       <Routes>
@@ -26,6 +30,10 @@ function App() {
           <Route path="/Registration" element={<Registration />} />
           <Route path="/CreateProject" element={<CreateProject />} />
           <Route path="/InsertTask" element={<InsertTask />} />
+          <Route path="/UpdateAccount" element={<UpdateAccount />} />
+          <Route path="/UpdateProject" element={<UpdateProject />} />
+          <Route path="/ChangePassword" element={<ChangePassword />} />
+          <Route path="/Logout" element={<Logout />} />
       </Routes>
     </div>
     )}

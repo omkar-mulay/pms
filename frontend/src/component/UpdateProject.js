@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom";
-import React, { useState } from 'react'
+import { useLocation, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from 'react'
 import { MDBBtn, MDBInput } from "mdb-react-ui-kit";
 import {
     MDBNavbar,
@@ -14,11 +14,59 @@ import {
 function UpdateProject(){
 
     let navigate = useNavigate();
+    let mgrid = "";
     const[managerid, setManagerId] = useState("");
     const[projectname, setProjectname] = useState("");
     const[project_desc, setProjectdesc] = useState("");
     const[enddate, setEnddate] = useState("");
-    
+    const [projects, setProjects] = useState({})
+
+    const search = useLocation().search;
+
+    const projectid = new URLSearchParams(search).get('projectid');
+    //console.log(projectid);
+    const fetchData = () => {
+        console.log(projectid);
+        
+        fetch("http://localhost:8080/search_by_projectid?projectid="+projectid)
+          .then(response => {
+            return response.json()
+             
+          })
+          .then(data => {
+            // const fields = [managerid, projectname, project_desc, enddate]
+            // fields.forEach(field =>setValue(field, data[field]));
+            setProjects(data)
+            setManagerId(data.managerid)
+            setProjectname(data.projectname)
+            setProjectdesc(data.project_desc)
+            //setEnddate(data.enddate?data.enddate:"")
+            let edate = new Date(data.enddate).toLocaleString()
+            //date = data.enddate
+            console.log(edate);
+            mgrid = data.managerid;
+            setEnddate(edate?edate:"")
+            //console.log(projects.projectname);
+          })
+        //   projects.map((data)=>{
+        //     return(
+        //         console.log(data.managerid)
+        //     )})
+    }
+
+    useEffect(() => {
+        fetchData()
+        //console.log(projects.projectid);
+        // .then((response) =>{
+        //     setManagerId(response.data.managerid)
+        //     setProjectname(response.data.projectname)
+        //     setProjectdesc(response.data.project_desc)
+        //     setEnddate(response.data.enddate)
+        // }).catch(error => {
+        //     console.log(error)
+        // })
+    }, [])
+
     const submitForm=(ev)=>{
         ev.preventDefault();
 
@@ -34,8 +82,8 @@ function UpdateProject(){
                 enddate: enddate
             })
         }
-        console.log(project_desc);
-        fetch("http://localhost:8080/update_project", reqOptions)
+        //console.log(project_desc);
+        fetch("http://localhost:8080/update_project?managerid="+managerid+"&&projectname="+projectname+"&&project_desc="+project_desc+"&&enddate="+enddate+"&&projectid="+projectid)
         .then(resp =>{
             if(resp.status===200){
                 alert("Project updated successfully!");
@@ -80,58 +128,26 @@ function UpdateProject(){
                 </MDBContainer>
             </MDBNavbar>
         </header><br/>
-            <form>
-                {/* <h3>Create Project</h3>
-                <div className="form-group">
-                    <label>Enter Manager id:</label>
-                    <input type="text" name="managerid" className="form-control" placeholder="Enter Manager id" onChange={(ev)=>setManagerId(ev.target.value) } />
-                </div><br/>
-                <div className="form-group">
-                    <label>Enter Project name:</label>
-                    <input type="text" name="projectname" className="form-control" placeholder="Enter Project name" onChange={(ev)=>setProjectname(ev.target.value) }/>
-                </div><br/>
-
-                <div className="form-group">
-                    <label>Enter Project desc:</label>
-                    <input type="text" name="project_desc" className="form-control" placeholder="Enter Project desccription" onChange={(ev)=>setProjectdesc(ev.target.value) }/>
-                </div><br/>
-
-                <div className="form-group">
-                    <label>Enter start date:</label>
-                    <input type="date" name="startdate" className="form-control" placeholder="Enter start date" onChange={(ev)=>setStartdate(ev.target.value) }/>
-                </div><br/>
-
-                <div className="form-group">
-                    <label>Enter end date:</label>
-                    <input type="date" name="enddate" className="form-control" placeholder="Enter end date" onChange={(ev)=>setEnddate(ev.target.value) }/>
-                </div><br/>
-
-                <div className="form-group">
-                    <label>Enter Client id:</label>
-                    <input type="text" name="clientid" className="form-control" placeholder="Enter Client id" onChange={(ev)=>setClientid(ev.target.value) }/>
-                </div><br/>
-                <div className="form-group">
-                    <button type="submit" className="btn btn-primary btn-block" onClick={(ev)=>submitForm(ev)}>Submit</button>
-                </div>
-                <br/><br/> */}
-
+            <form>           
+                        
                 <div style={{ width: '23rem' }}>
-                <h4>Create Project</h4>
-                    <MDBInput label='Enter manager id' name="managerid" type='text' size='lg' onChange={(ev)=>setManagerId(ev.target.value) }/>
+                <h4>Update Project</h4>
+                
+                    <MDBInput label='Enter manager id' name="managerid" value={managerid} type='text' size='lg' onChange={(ev)=>setManagerId(ev.target.value) }/>
                     <br />
 
-                    <MDBInput label='Enter Project name' name="projectname" type='text' size='lg' onChange={(ev)=>setProjectname(ev.target.value) }/>
+                    <MDBInput label='Enter Project name' name="projectname" value={projectname} type='text' size='lg' onChange={(ev)=>setProjectname(ev.target.value) }/>
                     <br />
 
-                    <MDBInput label='Enter Project desc' name="projectdesc" type='text' size='lg' onChange={(ev)=>setProjectdesc(ev.target.value) }/>
+                    <MDBInput label='Enter Project desc' name="projectdesc" value={project_desc} type='text' size='lg' onChange={(ev)=>setProjectdesc(ev.target.value) }/>
                     <br />
 
-                    <MDBInput label='Enter End date' name="enddate" type='date' size='lg' onChange={(ev)=>setEnddate(ev.target.value) }/>
+                    <MDBInput label='Enter End date' name="enddate" value={enddate} type='date' size='lg' onChange={(ev)=>setEnddate(ev.target.value) }/>
                     <br />
 
                     <MDBBtn type="submit" onClick={(ev)=>submitForm(ev)}>Update</MDBBtn>
+                    
                 </div>    
-
             </form>
         </div>
     );

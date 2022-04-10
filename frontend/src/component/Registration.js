@@ -1,6 +1,17 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import mystore from './store';
+import {
+    MDBNavbar,
+    MDBNavbarNav,
+    MDBNavbarItem,
+    MDBNavbarLink,
+    MDBNavbarToggler,
+    MDBContainer,
+    MDBIcon,
+    MDBInput,
+    MDBBtn
+  } from 'mdb-react-ui-kit';
 
 function Registration(){
 
@@ -36,7 +47,7 @@ function Registration(){
             .then(resp=> {
                 if(resp.status===200){
                     alert("User registration successful!");
-                    navigate("/login");
+                    navigate("/Admin");
                 }
                 else{
                     alert("User registration unsuccessful!");
@@ -51,7 +62,7 @@ function Registration(){
             .then(resp=> {
                 if(resp.status===200){
                     alert("User registration successful!");
-                    navigate("/login");
+                    navigate("/Admin");
                 }
                 else{
                     alert("User registration unsuccessful!");
@@ -64,56 +75,87 @@ function Registration(){
 
 
     }
-    return(
+     return(
+
         <div className="container">
-                <form>
-                <h3>Registration</h3>
-                <div className="form-group">
-                    <label>Enter Username</label>
-                    <input type="text" name="username" className="form-control" placeholder="Enter Username" onChange={(ev)=>setUsername(ev.target.value) } />
-                </div><br/>
-                <div className="form-group">
-                    <label>Enter Password</label>
-                    <input type="password" name="password" className="form-control" placeholder="Enter password" onChange={(ev)=>setPassword(ev.target.value) }/>
-                </div><br/>
-                <div className="form-group">
-                    <label>Enter First name</label>
-                    <input type="text" name="fname" className="form-control" placeholder="Enter firstname" onChange={(ev)=>setFname(ev.target.value) } />
-                </div><br/>
+         
+         <header>
+             <MDBNavbar expand='lg' light bgColor='white' fixed>
+                 <MDBContainer fluid>
+                 <MDBNavbarToggler
+                     aria-controls='navbarExample01'
+                     aria-expanded='false'
+                     aria-label='Toggle navigation'
+                 >
+                     <MDBIcon fas icon='bars' />
+                 </MDBNavbarToggler>
+                 <div className='collapse navbar-collapse' id='navbarExample01'>
+                     <MDBNavbarNav right className='mb-2 mb-lg-0'>
+                     <MDBNavbarItem active>
+                         <MDBNavbarLink aria-current='page' href='/Admin'>
+                         Home
+                         </MDBNavbarLink>
+                     </MDBNavbarItem>
+                     <MDBNavbarItem>
+                         <MDBNavbarLink href='/Registration'>Add User</MDBNavbarLink>
+                     </MDBNavbarItem>
+                     <MDBNavbarItem>
+                         <MDBNavbarLink href='/ChangePassword'>Change Password</MDBNavbarLink>
+                     </MDBNavbarItem>
+                     <MDBNavbarItem>
+                         <MDBNavbarLink href='/CreateProject'>Create Project</MDBNavbarLink>
+                     </MDBNavbarItem>
+                     <MDBNavbarItem>
+                     <select name="setting" id="setting" className="form-control" onClick={(ev)=>navigate(ev.target.value)}>    
+                        <option value="">Settings </option>
+                        <option value="../UpdateAccount">Update Account Info </option>
+                        <option value="../Logout">Logout</option>
+                        </select>
+                     </MDBNavbarItem>
+                     </MDBNavbarNav>
+                 </div>
+                 </MDBContainer>
+             </MDBNavbar>
+         </header><br/>
+       
+ 
+         <form>
+           <div style={{ width: '23rem' }}>
+                 <h4>Add New User</h4>
+                     <MDBInput label='Enter Username' name="Username" type='text' size='lg' onChange={(ev)=>setUsername(ev.target.value) }/>
+                     <br />
+ 
+                     <MDBInput label='Enter Password' name="Password" type='Password' size='lg' onChange={(ev)=>setPassword(ev.target.value) }/>
+                     <br />
+ 
+                     <MDBInput label='Enter First Name' name="Fname" type='text' size='lg' onChange={(ev)=>setFname(ev.target.value) }/>
+                     <br />
 
-                <div className="form-group">
-                    <label>Enter Last name</label>
-                    <input type="text" name="lname" className="form-control" placeholder="Enter lastname" onChange={(ev)=>setLname(ev.target.value) } />
-                </div><br/>
+                     <MDBInput label='Enter Last Name' name="Lastname" type='text' size='lg' onChange={(ev)=>setLname(ev.target.value) }/>
+                     <br />
 
-                <div className="form-group">
-                    <label>Enter email</label>
-                    <input type="text" name="email" className="form-control" placeholder="Enter email" onChange={(ev)=>setEmail(ev.target.value) } />
-                </div><br/>
+                     <MDBInput label='Enter Email id' name="Email" type='email' size='lg' onChange={(ev)=>setEmail(ev.target.value) }/>
+                     <br />
 
-                <div className="form-group">
-                    <label>Enter Contact no</label>
-                    <input type="text" name="contactno" className="form-control" placeholder="Enter contact no" onChange={(ev)=>setContactno(ev.target.value) } />
-                </div><br/>
-
-                <div className="form-group">
-                    <label>Enter Role</label>
-                    <select name="role" id="role" className="form-control" onChange={(ev)=>setRole(ev.target.value)}>
-                        <option value="">--Please choose an option--</option>
+                     <MDBInput label='Enter Contact No' name="Contactno" type='text' size='lg' onChange={(ev)=>setContactno(ev.target.value) }/>
+                     <br />
+ 
+                     <select name="role" id="role" className="form-control" onClick={(ev)=>setRole(ev.target.value)}>    
+                        <option value="">Choose Role </option>
                         <option value="employee">Employee</option>
                         <option value="manager">Manager</option>
                         <option value="client">Client</option>
-                    </select>                
-                </div><br/>
-
-                <div className="form-group">
-                    <button type="submit" className="btn btn-primary btn-block" onClick={(ev)=>submitForm(ev)}>Submit</button>
-                </div>
-                <br/><br/>
-            </form>
-            
-            </div>
-    );
+                        </select>
+                    <br/>
+                     <MDBBtn type="submit" onClick={(ev)=>submitForm(ev)}>Add User</MDBBtn>
+          </div>    
+ 
+         </form>
+ 
+         </div>
+       
+       
+     ); 
 }
 
 export default Registration;

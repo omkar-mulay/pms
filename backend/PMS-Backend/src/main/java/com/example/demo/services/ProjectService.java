@@ -35,6 +35,10 @@ public class ProjectService {
 		return prepo.searchByProjectName(projectname);
 	}
 	
+	public Project searchByProjectId(int projectid) {
+		return prepo.searchByProjectId(projectid);
+	}
+	
 	public List<Project> searchByManagerId(int managerid) {
 		return prepo.searchByManagerId(managerid);
 	}
