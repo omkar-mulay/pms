@@ -123,12 +123,13 @@ function Admin() {
                             return(
                                 <tr key={projects.projectid}> 
                                    <td>{projects.managerid}</td> 
-                                   <td>{projects.projectname}</td> 
+                                   <td><a href={`/ProjectDetails?projectid=${projects.projectid}`}>{projects.projectname}</a></td> 
                                    <td>{projects.project_desc}</td> 
                                    <td>{projects.startdate}</td>
                                    <td>{projects.enddate}</td>
                                    <td>{projects.clientid}</td>
                                    <td><Link className="btn btn-info" to={`/UpdateProject?projectid=${projects.projectid}`} >Update</Link></td>
+                                   <td><Link className="btn btn-danger" to={`/UpdateProject?projectid=${projects.projectid}`}>Delete</Link></td>
                                 </tr>
                                 ) 
                             })

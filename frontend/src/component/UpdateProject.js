@@ -41,7 +41,7 @@ function UpdateProject(){
             setProjectname(data.projectname)
             setProjectdesc(data.project_desc)
             //setEnddate(data.enddate?data.enddate:"")
-            let edate = new Date(data.enddate).toLocaleString()
+            let edate = new Date(data.enddate).toISOString().split('T')[0]
             //date = data.enddate
             console.log(edate);
             mgrid = data.managerid;
