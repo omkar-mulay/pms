@@ -12,17 +12,21 @@ import {
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import UpdateProject from "./UpdateProject";
+import { Button } from "react-bootstrap";
 
 function Admin() {
     const [projects, setProjects] = useState([])
 
     let navigate = useNavigate();
+    //let projectid = "";
+    //const[projectid, setProjectId] = useState("");
     const[managerid, setManagerId] = useState("");
     const[projectname, setProjectname] = useState("");
     const[project_desc, setProjectdesc] = useState("");
     const[startdate, setStartdate] = useState("");
     const[enddate, setEnddate] = useState("");
     const[clientid, setClientid] = useState("");
+
 
     const fetchData = () => {
         fetch("http://localhost:8080/show_all_projects")
@@ -32,11 +36,27 @@ function Admin() {
           .then(data => {
             setProjects(data)
             console.log(data)
+            //projectid = data.projectid;
           })
     }
     useEffect(() => {
         fetchData()
       }, [])
+
+    function delProj(projectid, projectname){
+        console.log(projectid);
+        if(window.confirm("Are you sure you want to delete project: "+projectname))
+        {
+            fetch("http://localhost:8080/delete_project?projectid="+projectid)
+            .then(response => {
+                if(response.status===200){
+                    alert("Project deleted successfully!");
+                    navigate("/Admin");
+                }
+            })
+        }
+        
+    }  
 
     //   const updateProject=(ev)=>{
     //     ev.preventDefault();
@@ -129,7 +149,8 @@ function Admin() {
                                    <td>{projects.enddate}</td>
                                    <td>{projects.clientid}</td>
                                    <td><Link className="btn btn-info" to={`/UpdateProject?projectid=${projects.projectid}`} >Update</Link></td>
-                                   <td><Link className="btn btn-danger" to={`/UpdateProject?projectid=${projects.projectid}`}>Delete</Link></td>
+                                   {/* <td><Link className="btn btn-danger" to={`/UpdateProject?projectid=${projects.projectid}`}>Delete</Link></td> */}
+                                   <td><Button className="btn btn-danger" onClick={()=> delProj(projects.projectid, projects.projectname)}>Delete</Button></td>
                                 </tr>
                                 ) 
                             })

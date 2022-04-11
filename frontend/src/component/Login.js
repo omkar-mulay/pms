@@ -34,20 +34,20 @@ function Login() {
             console.log(mystore.getState().loggedin);
             console.log(localStorage.getItem("loggedinuser"));
             let role = (JSON.parse(localStorage.getItem("loggedinuser"))).role;
-            console.log(obj[1]);
-            if(obj[1]=='admin')
+            console.log(obj[3]);
+            if(obj[3]=='admin')
             {
                 navigate("/Admin");
             }
-            else if(obj[1]=='client')
+            else if(obj[3]=='client')
             {
                 navigate("/Client");
             }
-            else if(obj[1]=='manager')
+            else if(obj[3]=='manager')
             {
                 navigate("/Manager");
             }
-            else if(obj[1]=='employee')
+            else if(obj[3]=='employee')
             {
                 navigate("/Employee");
             }

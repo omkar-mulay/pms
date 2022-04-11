@@ -15,7 +15,7 @@ import com.example.demo.entities.Login;
 @Transactional
 public interface LoginRepositry extends JpaRepository<Login, Integer>{
 
-	@Query("select l.loginid, l.role from Login l where username= :username and password= :password")
+	@Query(value="(select l.loginid,e.empid 'id',concat(e.fname,' ',e.lname) 'name',l.role from login l join employee e on l.loginid=e.loginid where l.username=?1 and l.password=?2) union (select l.loginid, c.clientid 'id',concat(c.fname,' ',c.lname) 'name',l.role from login l join client c on l.loginid=c.loginid where l.username=?1 and l.password=?2)",nativeQuery = true)
 	public Object checkLogin(String username, String password);
 	
 	@Modifying
