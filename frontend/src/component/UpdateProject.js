@@ -115,14 +115,18 @@ function UpdateProject(){
                         <MDBNavbarLink href='/Registration'>Add User</MDBNavbarLink>
                     </MDBNavbarItem>
                     <MDBNavbarItem>
-                        <MDBNavbarLink href='#'>Change Password</MDBNavbarLink>
-                    </MDBNavbarItem>
-                    <MDBNavbarItem>
-                        <MDBNavbarLink href='/CreateProject'>Create Project</MDBNavbarLink>
-                    </MDBNavbarItem>
-                    <MDBNavbarItem>
-                        <MDBNavbarLink href='#'>Settings</MDBNavbarLink>
-                    </MDBNavbarItem>
+                         <MDBNavbarLink href='/ChangePassword'>Change Password</MDBNavbarLink>
+                     </MDBNavbarItem>
+                     <MDBNavbarItem>
+                         <MDBNavbarLink href='/CreateProject'>Create Project</MDBNavbarLink>
+                     </MDBNavbarItem>
+                     <MDBNavbarItem>
+                     <select name="setting" id="setting" className="form-control" onClick={(ev)=>navigate(ev.target.value)}>    
+                        <option value="">Settings </option>
+                        <option value="../UpdateAccount">Update Account Info </option>
+                        <option value="../Logout">Logout</option>
+                        </select>
+                     </MDBNavbarItem>
                     </MDBNavbarNav>
                 </div>
                 </MDBContainer>

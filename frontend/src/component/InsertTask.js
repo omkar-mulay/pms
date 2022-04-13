@@ -26,7 +26,7 @@ function InsertTask(){
         ev.preventDefault();
 
         let url="http://localhost:8080/insert_task?task_name="+task_name+"&&start_date="+start_date+"&&end_date="+end_date+"&&projectid="+projectid+"&&status="+status+"&&description="+description+"&&priority="+priority+"&&teammember_id="+teammember_id;
-        alert(url);
+        //alert(url);
         fetch(url)
         .then(resp =>{
             if(resp.status===200){
@@ -90,14 +90,24 @@ return(
                     <MDBInput label='Enter project id' name="projectid" type='text' size='lg' onChange={(ev)=>setProjectid(ev.target.value) }/>
                     <br />
 
-                    <MDBInput label='Enter Status ' name="status" type='text' size='lg' onChange={(ev)=>setStatus(ev.target.value) }/>
-                    <br />
+                    <select name="status" id="status" className="form-control" onChange={(ev)=>setStatus(ev.target.value) }>    
+                        <option value="">Choose status </option>
+                        <option value="To do">To do</option>
+                        <option value="In Progress">In progress</option>
+                        <option value="Complete">Complete</option>
+                    </select>
+                    <br/>
 
                     <MDBInput label='Enter description' name="description" type='text' size='lg' onChange={(ev)=>setDescription(ev.target.value) }/>
                     <br />
 
-                    <MDBInput label='Enter Priority' name="priority" type='text' size='lg' onChange={(ev)=>setPriority(ev.target.value) }/>
-                    <br />
+                    <select name="priority" id="priority" className="form-control" onChange={(ev)=>setPriority(ev.target.value) }>    
+                        <option value="">Choose priority </option>
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                    <br/>
 
 
                     <MDBInput label='Enter teammember id' name="teammemberid" type='text' size='lg' onChange={(ev)=>setTeammemberid(ev.target.value) }/>

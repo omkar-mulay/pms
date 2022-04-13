@@ -18,6 +18,18 @@ public class TaskService {
 		return taskrepo.viewTaskByProject(projectid);
 	}
 	
+	public Task viewTaskByTaskid(int taskid){
+		return taskrepo.viewTaskByTaskid(taskid);
+	}
+	
+	public List<Task> showTaskByEmpid(int empid){
+		return taskrepo.showTaskByEmpid(empid);
+	}
+	
+	public List<String> viewStatusCount(int projectid){
+		return taskrepo.viewStatusCount(projectid);
+	}
+	
 	public List<String> viewTaskStatusByProject(int projectid){
 		return taskrepo.viewTaskStatusByProject(projectid);
 	}

@@ -19,6 +19,15 @@ public interface TaskRepositry extends JpaRepository<Task, Integer> {
 	@Query(value="select * from task where projectid = ?1", nativeQuery = true)
 	public List<Task> viewTaskByProject(int projectid);
 	
+	@Query(value="select * from task where taskid = ?1", nativeQuery = true)
+	public Task viewTaskByTaskid(int taskid);
+	
+	@Query(value="select * from task t join teammember tm on t.teammember_id=tm.teammember_id where tm.empid=?1", nativeQuery = true)
+	public List<Task> showTaskByEmpid(int empid);
+	
+	@Query(value="select count(status) 'count', status from task where projectid=?1 group by status having status in ('To do', 'In Progress', 'Complete') order by status asc", nativeQuery = true)
+	public List<String> viewStatusCount(int projectid);
+	
 	@Query(value="select taskid, task_name, status from task where projectid = ?1", nativeQuery = true)
 	public List<String> viewTaskStatusByProject(int projectid);
 	

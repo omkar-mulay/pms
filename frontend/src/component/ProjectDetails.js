@@ -85,6 +85,7 @@ function ProjectDetails() {
             </MDBNavbar>
         </header>
         <br/>
+        <Link className="btn btn-info" to={`/ShowProgress?projectid=${projectid}`} >View Pie Diagram</Link>
         <h4 style={{textAlign: 'left'}}>Projects Details</h4>
         <br/>
         <table className="table table-bordered table-hover" style={{border: 'solid'}}>

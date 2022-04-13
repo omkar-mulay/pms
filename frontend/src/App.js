@@ -14,15 +14,21 @@ import UpdateProject from './component/UpdateProject';
 import ChangePassword from './component/ChangePassword';
 import Logout from './component/Logout';
 import ProjectDetails from './component/ProjectDetails';
+import LandinPage from './component/LandingPage';
+import ShowTasks from './component/ShowTasks';
+import UpdateTask from './component/UpdateTask';
+import UpdateStatus from './component/UpdateStatus';
+import ShowProgress from './component/ShowProgres';
 //import MainMenu from './components/MainMenu';
 
 function App() {
     return (
     <div className='App'>
       <h1>Project Management System</h1> <br/>
-      <Link to="/login">Login</Link> <br/>
+      {/* <Link to="/login">Login</Link> <br/> */}
       
       <Routes>
+          <Route path="/" element={<LandinPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/Admin" element={<Admin />} />
           <Route path="/Client" element={<Client />} />
@@ -36,6 +42,10 @@ function App() {
           <Route path="/ChangePassword" element={<ChangePassword />} />
           <Route path="/Logout" element={<Logout />} />
           <Route path="/ProjectDetails" element={<ProjectDetails />} />
+          <Route path="/ShowTasks" element={<ShowTasks />} />
+          <Route path="/UpdateTask" element={<UpdateTask />} />
+          <Route path="/UpdateStatus" element={<UpdateStatus />} />
+          <Route path="/ShowProgress" element={<ShowProgress />} />
           
       </Routes>
     </div>

@@ -32,9 +32,9 @@ function Login() {
             //console.log(user.fname);
             mystore.dispatch({type: 'LOGGEDIN'});
             console.log(mystore.getState().loggedin);
-            console.log(localStorage.getItem("loggedinuser"));
+            console.log(localStorage.getItem("loggedinuser").role);
             let role = (JSON.parse(localStorage.getItem("loggedinuser"))).role;
-            console.log(obj[3]);
+            console.log(role);
             if(obj[3]=='admin')
             {
                 navigate("/Admin");

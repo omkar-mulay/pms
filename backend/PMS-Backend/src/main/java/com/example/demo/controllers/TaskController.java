@@ -23,6 +23,21 @@ public class TaskController {
 		return taskservice.viewTaskByProject(projectid);
 	}
 	
+	@GetMapping("/view_task_by_taskid")
+	public Task viewTaskByTaskid(@RequestParam int taskid){
+		return taskservice.viewTaskByTaskid(taskid);
+	}
+	
+	@GetMapping("/show_task_by_empid")
+	public List<Task> showTaskByEmpid(@RequestParam int empid){
+		return taskservice.showTaskByEmpid(empid);
+	}
+	
+	@GetMapping("/view_status_count")
+	public List<String> viewStatusCount(@RequestParam int projectid){
+		return taskservice.viewStatusCount(projectid);
+	}
+	
 	@GetMapping("/view_task_status")
 	public List<String> viewTaskStatusByProject(@RequestParam int projectid){
 		return taskservice.viewTaskStatusByProject(projectid);

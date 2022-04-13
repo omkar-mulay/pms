@@ -106,18 +106,18 @@ function Admin() {
                         <MDBNavbarLink href='/Registration'>Add User</MDBNavbarLink>
                     </MDBNavbarItem>
                     <MDBNavbarItem>
-                        <MDBNavbarLink href='#'>Change Password</MDBNavbarLink>
-                    </MDBNavbarItem>
-                    <MDBNavbarItem>
-                        <MDBNavbarLink href='/CreateProject'>Create Project</MDBNavbarLink>
-                    </MDBNavbarItem>
-                    <MDBNavbarItem>
-                    <select name="setting" id="setting" className="form-control" onClick={(ev)=>navigate(ev.target.value)}>    
+                         <MDBNavbarLink href='/ChangePassword'>Change Password</MDBNavbarLink>
+                     </MDBNavbarItem>
+                     <MDBNavbarItem>
+                         <MDBNavbarLink href='/CreateProject'>Create Project</MDBNavbarLink>
+                     </MDBNavbarItem>
+                     <MDBNavbarItem>
+                     <select name="setting" id="setting" className="form-control" onClick={(ev)=>navigate(ev.target.value)}>    
                         <option value="">Settings </option>
                         <option value="../UpdateAccount">Update Account Info </option>
                         <option value="../Logout">Logout</option>
                         </select>
-                    </MDBNavbarItem>
+                     </MDBNavbarItem>
                     </MDBNavbarNav>
                 </div>
                 </MDBContainer>
@@ -149,7 +149,6 @@ function Admin() {
                                    <td>{projects.enddate}</td>
                                    <td>{projects.clientid}</td>
                                    <td><Link className="btn btn-info" to={`/UpdateProject?projectid=${projects.projectid}`} >Update</Link></td>
-                                   {/* <td><Link className="btn btn-danger" to={`/UpdateProject?projectid=${projects.projectid}`}>Delete</Link></td> */}
                                    <td><Button className="btn btn-danger" onClick={()=> delProj(projects.projectid, projects.projectname)}>Delete</Button></td>
                                 </tr>
                                 ) 
