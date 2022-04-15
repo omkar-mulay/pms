@@ -6,28 +6,17 @@ import {
     MDBNavbarLink,
     MDBNavbarToggler,
     MDBContainer,
-    MDBIcon,
-    MDBBtn
+    MDBIcon
   } from 'mdb-react-ui-kit';
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import UpdateProject from "./UpdateProject";
 import { Button } from "react-bootstrap";
 
 function Admin() {
     const [projects, setProjects] = useState([])
 
     let navigate = useNavigate();
-    //let projectid = "";
-    //const[projectid, setProjectId] = useState("");
-    const[managerid, setManagerId] = useState("");
-    const[projectname, setProjectname] = useState("");
-    const[project_desc, setProjectdesc] = useState("");
-    const[startdate, setStartdate] = useState("");
-    const[enddate, setEnddate] = useState("");
-    const[clientid, setClientid] = useState("");
-
-
+    
     const fetchData = () => {
         fetch("http://localhost:8080/show_all_projects")
           .then(response => {
@@ -35,8 +24,6 @@ function Admin() {
           })
           .then(data => {
             setProjects(data)
-            console.log(data)
-            //projectid = data.projectid;
           })
     }
     useEffect(() => {
@@ -44,45 +31,20 @@ function Admin() {
       }, [])
 
     function delProj(projectid, projectname){
-        console.log(projectid);
         if(window.confirm("Are you sure you want to delete project: "+projectname))
         {
             fetch("http://localhost:8080/delete_project?projectid="+projectid)
             .then(response => {
                 if(response.status===200){
                     alert("Project deleted successfully!");
-                    navigate("/Admin");
+                    window.location.reload();
                 }
             })
         }
         
     }  
 
-    //   const updateProject=(ev)=>{
-    //     ev.preventDefault();
-
-    //     console.log(projectid);
-    //     const reqOptions = {
-    //         method: 'GET',
-    //         headers :{
-    //             'Content-Type':'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //             managerid: managerid,
-    //             projectname: projectname,
-    //             project_desc: project_desc,
-    //             enddate: enddate
-    //         })
-    //     }
-    // }
-
     return(
-        
-        // <div className="container">
-        //     <h1>Welcome Admin</h1>
-        //     <Link to="/Registration">Registration</Link> <br/>
-        //     <Link to="/CreateProject">Create Project</Link> <br/>
-        // </div>
         <div className="container">
             
         <header>

@@ -15,8 +15,8 @@ import com.example.demo.entities.Client;
 @Repository
 public interface ClientRepositry extends JpaRepository<Client, Integer> {
 
-	@Query(value="select c.clientid, concat(c.fname, ' ', c.lname) 'clientname' from client c join login l on c.loginid = l.loginid where l.role = 'client'", nativeQuery = true)
-	public List<String> viewAllClient();
+	@Query(value="select * from client c join login l on c.loginid = l.loginid where l.role = 'client'", nativeQuery = true)
+	public List<Client> viewAllClient();
 	
 	@Modifying
 	@Query(value="update client c set c.fname = ?1, c.lname = ?2, c.email = ?3, c.contactno = ?4 where c.clientid = ?5" , nativeQuery = true)

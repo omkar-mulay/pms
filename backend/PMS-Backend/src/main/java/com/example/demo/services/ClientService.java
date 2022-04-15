@@ -23,7 +23,7 @@ public class ClientService {
 		return crepo.save(c);
 	}
 	
-	public List<String> viewAllClient(){
+	public List<Client> viewAllClient(){
 		return crepo.viewAllClient();
 	}
 	

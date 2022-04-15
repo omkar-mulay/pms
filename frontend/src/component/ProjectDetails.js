@@ -17,12 +17,6 @@ function ProjectDetails() {
     const [tasks, setTasks] = useState([])
 
     let navigate = useNavigate();
-    // const[managerid, setManagerId] = useState("");
-    // const[projectname, setProjectname] = useState("");
-    // const[project_desc, setProjectdesc] = useState("");
-    // const[startdate, setStartdate] = useState("");
-    // const[enddate, setEnddate] = useState("");
-    // const[clientid, setClientid] = useState("");
 
     const search = useLocation().search;
 
@@ -85,7 +79,7 @@ function ProjectDetails() {
             </MDBNavbar>
         </header>
         <br/>
-        <Link className="btn btn-info" to={`/ShowProgress?projectid=${projectid}`} >View Pie Diagram</Link>
+        {/* <Link className="btn btn-info" to={`/ShowProgress?projectid=${projectid}`} >View P</Link> */}
         <h4 style={{textAlign: 'left'}}>Projects Details</h4>
         <br/>
         <table className="table table-bordered table-hover" style={{border: 'solid'}}>

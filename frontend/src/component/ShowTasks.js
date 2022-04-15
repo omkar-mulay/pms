@@ -96,10 +96,10 @@ function ShowTasks() {
         </header>
         <br/>
         <div className="container" style={{alignContent:"left"}}>
-            <Link style={{alignContent:"left"}} className="btn btn-info" to={`/InsertTask`} >Create new task</Link>
+            <Link style={{alignContent:"left"}} className="btn btn-info" to={`/InsertTask?projectid=${projectid}`} >Create new task</Link>
         </div>
         <br/>
-        <Link className="btn btn-info" to={`/ShowProgress?projectid=${projectid}`} >View Pie Diagram</Link>
+        {/* <Link className="btn btn-info" to={`/ShowProgress?projectid=${projectid}`} >View Pie Diagram</Link> */}
         <h4 style={{textAlign: 'left'}}>Projects Details</h4>
         <br/>
         <table className="table table-bordered table-hover" style={{border: 'solid'}}>

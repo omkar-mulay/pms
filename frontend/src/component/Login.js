@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import mystore from './store';
-import { Form, Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { MDBBtn, MDBInput } from 'mdb-react-ui-kit';
 
 function Login() {
@@ -25,14 +25,11 @@ function Login() {
         fetch("http://localhost:8080/login",reqOptions)
         .then(resp=> resp.json())
         .then(obj=> { console.log(obj);
-            //setUser(obj);
-            //console.log(user);
+
             localStorage.setItem("loggedinuser" , JSON.stringify(obj));
-            //console.log(localStorage.getItem("loggedinuser").loginid.role);
-            //console.log(user.fname);
+            
             mystore.dispatch({type: 'LOGGEDIN'});
-            console.log(mystore.getState().loggedin);
-            console.log(localStorage.getItem("loggedinuser").role);
+            
             let role = (JSON.parse(localStorage.getItem("loggedinuser"))).role;
             console.log(role);
             if(obj[3]=='admin')
@@ -56,23 +53,10 @@ function Login() {
 }
 
     return (
-        <div className="container">
+        
+        <div className="container" style={{width: '40%', height:'50%', marginTop: '8%', marginLeft: '25', marginRight: '25%', border: '1px'}}>
+            <span style={{margin: '10px'}}></span>
             <Form>
-                {/* <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Enter Username</Form.Label>
-                    <Form.Control type="text" name="username" placeholder="Enter username" onChange={(ev)=>setUsername(ev.target.value) }/>
-                 </Form.Group>
-
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Enter Password</Form.Label>
-                    <Form.Control type="password" name="password" placeholder="Password" onChange={(ev)=>setPassword(ev.target.value) }/>
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" label="Check me out" />
-                </Form.Group> 
-                <Button variant="primary" type="submit" onClick={(ev)=>submitForm(ev)}>
-                    Login
-                </Button>  */}
                 <div style={{ width: '23rem' }}>
                     <MDBInput label='Enter username' name='username' type='text' size='lg' onChange={(ev)=>setUsername(ev.target.value)}/>
                     <br />
@@ -84,6 +68,7 @@ function Login() {
             </Form>
             
             </div>
+        
     );
 }
 

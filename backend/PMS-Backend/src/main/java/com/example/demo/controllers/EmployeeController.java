@@ -43,12 +43,12 @@ public class EmployeeController {
 	}
 	
 	@GetMapping("/view_all_emp")
-	public List<String> viewAllEmp(){
+	public List<Employee> viewAllEmp(){
 		return eservice.viewAllEmp();
 	}
 	
 	@GetMapping("/view_all_manager")
-	public List<String> viewAllManager(){
+	public List<Employee> viewAllManager(){
 		return eservice.viewAllManager();
 	}
 }

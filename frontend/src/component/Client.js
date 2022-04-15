@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import {
     MDBNavbar,
@@ -7,15 +7,13 @@ import {
     MDBNavbarLink,
     MDBNavbarToggler,
     MDBContainer,
-    MDBIcon,
-    MDBBtn
+    MDBIcon
   } from 'mdb-react-ui-kit';
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import UpdateProject from "./UpdateProject";
 
 
-function Manager() {
+function Client() {
 
     const [projects, setProjects] = useState([])
     
@@ -103,7 +101,7 @@ function Manager() {
                                    <td>{projects.startdate}</td>
                                    <td>{projects.enddate}</td>
                                    <td>{projects.clientid}</td>
-                                   <td><Link className="btn btn-info" to={`/ShowProgress?projectid=${projects.projectid}`} >View Pie Chart</Link></td>
+                                   <td><Link className="btn btn-info" to={`/ShowProgress?projectid=${projects.projectid}`} >View Progress</Link></td>
                                 </tr>
                                 ) 
                             })
@@ -115,4 +113,4 @@ function Manager() {
     );
     
 }
-export default Manager;
+export default Client;

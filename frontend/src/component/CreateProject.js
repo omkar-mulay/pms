@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
-import mystore from './store';
 import {
     MDBNavbar,
     MDBNavbarNav,
@@ -15,6 +14,9 @@ import {
 
 
 function AddProject(){
+
+    const [mgr, setMgr] = useState([])
+    const [cli, setCli] = useState([])
 
     let navigate = useNavigate();
     const[managerid, setmanagerid] = useState("");
@@ -54,13 +56,32 @@ function AddProject(){
             );
 
         }
-        
-            
-        
-        
+        const fetchMgr = () => {
+            fetch("http://localhost:8080/view_all_manager")
+              .then(response => {
+                return response.json()
+              })
+              .then(data => {
+                setMgr(data)
+                console.log(data)
+              })
+        }
 
+        const fetchClient = () => {
+            fetch("http://localhost:8080/view_all_client")
+              .then(response => {
+                return response.json()
+              })
+              .then(data => {
+                setCli(data)
+                console.log(data)
+              })
+        }
+        
+        useEffect(() => {
+            fetchMgr(); fetchClient()
+          }, [])
 
-    
     return(
 
         <div className="container">
@@ -104,8 +125,60 @@ function AddProject(){
              </MDBNavbar>
          </header><br/>
        
- 
+         List of Manager:
+        <table className="table table-bordered table-hover" style={{border: 'solid'}}>
+            <thead>
+                <tr>
+                <th>Manager id</th>
+                <th>Manager first name</th>
+                <th>Manager last name</th>
+                </tr>
+            </thead>
+            <tbody>
+                    {
+                        mgr.map((mgr)=>{
+                            return(
+                                
+                                <tr key={mgr.empid}> 
+                                   <td>{mgr.empid}</td>
+                                   <td>{mgr.fname}</td> 
+                                   <td>{mgr.lname}</td> 
+                                </tr>
+                                ) 
+                            })
+                    }
+            </tbody>
+        </table>
+        
+        
+        List of Client:
+        <table className="table table-bordered table-hover" style={{border: 'solid'}}>
+            <thead>
+                <tr>
+                <th>Client id</th>
+                <th>Client first name</th>
+                <th>Client last name</th>
+                </tr>
+            </thead>
+            <tbody>
+                    {
+                        cli.map((cli)=>{
+                            return(
+                                
+                                <tr key={cli.clientid}> 
+                                   <td>{cli.clientid}</td>
+                                   <td>{cli.fname}</td> 
+                                   <td>{cli.lname}</td> 
+                                </tr>
+                                ) 
+                            })
+                    }
+            </tbody>
+        </table>
+        
+
          <form>
+         <div className="container" style={{width: '40%', height:'50%', marginTop: '8%', marginLeft: '25', marginRight: '25%'}}>
            <div style={{ width: '23rem' }}>
                  <h4>Add New Project</h4>
                      <MDBInput label='Enter Managerid' name="managerid" type='text' size='lg' onChange={(ev)=>setmanagerid(ev.target.value) }/>
@@ -128,7 +201,7 @@ function AddProject(){
  
                      <MDBBtn type="submit" onClick={(ev)=>submitForm(ev)}>Add Project</MDBBtn>
           </div>    
- 
+        </div>
          </form>
  
          </div>

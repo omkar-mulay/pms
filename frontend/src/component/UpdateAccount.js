@@ -53,25 +53,8 @@ return(
                     <MDBIcon fas icon='bars' />
                 </MDBNavbarToggler>
                 <div className='collapse navbar-collapse' id='navbarExample01'>
-                    <MDBNavbarNav right className='mb-2 mb-lg-0'>
-                    <MDBNavbarItem active>
-                        <MDBNavbarLink aria-current='page' href='/Admin'>
-                        Home
-                        </MDBNavbarLink>
-                    </MDBNavbarItem>
-                    <MDBNavbarItem>
-                        <MDBNavbarLink href='/Registration'>Add User</MDBNavbarLink>
-                    </MDBNavbarItem>
-                    <MDBNavbarItem>
-                        <MDBNavbarLink href='#'>Change Password</MDBNavbarLink>
-                    </MDBNavbarItem>
-                    <MDBNavbarItem>
-                        <MDBNavbarLink href='/CreateProject'>Create Project</MDBNavbarLink>
-                    </MDBNavbarItem>
-                    <MDBNavbarItem>
-                        <MDBNavbarLink href='#'>Settings</MDBNavbarLink>
-                    </MDBNavbarItem>
-                    </MDBNavbarNav>
+                    
+                    
                 </div>
                 </MDBContainer>
             </MDBNavbar>
@@ -79,6 +62,7 @@ return(
       
 
         <form>
+        <div className="container" style={{width: '40%', height:'50%', marginTop: '8%', marginLeft: '25', marginRight: '25%'}}>
           <div style={{ width: '23rem' }}>
                 <h4>Update Account Information</h4>
                     <MDBInput label='Enter First Name' name="fname" type='text' size='lg' onChange={(ev)=>setfname(ev.target.value) }/>
@@ -100,7 +84,7 @@ return(
 
                     <MDBBtn type="submit" onClick={(ev)=>submitForm(ev)}>Update</MDBBtn>
          </div>    
-
+         </div>
         </form>
 
         </div>

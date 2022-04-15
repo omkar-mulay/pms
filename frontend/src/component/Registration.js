@@ -120,6 +120,7 @@ function Registration(){
        
  
          <form>
+         <div className="container" style={{width: '40%', height:'50%', marginTop: '8%', marginLeft: '25', marginRight: '25%'}}>
            <div style={{ width: '23rem' }}>
                  <h4>Add New User</h4>
                      <MDBInput label='Enter Username' name="Username" type='text' size='lg' onChange={(ev)=>setUsername(ev.target.value) }/>
@@ -149,7 +150,7 @@ function Registration(){
                     <br/>
                      <MDBBtn type="submit" onClick={(ev)=>submitForm(ev)}>Add User</MDBBtn>
           </div>    
- 
+        </div>
          </form>
  
          </div>

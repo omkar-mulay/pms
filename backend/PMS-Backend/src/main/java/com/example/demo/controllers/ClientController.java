@@ -37,7 +37,7 @@ public class ClientController {
 	}
 	
 	@GetMapping("/view_all_client")
-	public List<String> viewAllClient(){
+	public List<Client> viewAllClient(){
 		return cservice.viewAllClient();
 	}
 	

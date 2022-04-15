@@ -48,8 +48,19 @@ function ShowProgress(){
             console.log(typeof(var1));
           })
     }
+    const fetchProjectStatus = () => {
+      fetch("http://localhost:8080/view_task_by_project?projectid="+projectid)
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          setTasks(data)
+          console.log(data)
+        })
+    }
     useEffect(() => {
-        fetchData()
+        fetchData();
+        fetchProjectStatus()
       }, [])
 
     const sampleData = [
@@ -87,7 +98,31 @@ function ShowProgress(){
 
 return(
     <div className="container" style={{height:600, width: 600}}>
-        <VictoryPie
+      List of Tasks:
+        <table className="table table-bordered table-hover" style={{border: 'solid'}}>
+            <thead>
+                <tr>
+                <th>Task id</th>
+                <th>Task name</th>
+                <th>Task status</th>
+                </tr>
+            </thead>
+            <tbody>
+                    {
+                        tasks.map((task)=>{
+                            return(
+                                
+                                <tr key={task.taskid}> 
+                                   <td>{task.taskid}</td>
+                                   <td>{task.task_name}</td> 
+                                   <td>{task.status}</td> 
+                                </tr>
+                                ) 
+                            })
+                    }
+            </tbody>
+        </table>
+        {/* <VictoryPie
             colorScale={["cyan", "orange", "navy" ]}
             data={[
                 {x:"Complete", y: var1},
@@ -95,8 +130,9 @@ return(
                 {x:"To do", y: var3}
             ]}
             
-        />
+        /> */}
         {/* <Pie data={data} /> */}
+
 
     </div>
 );    

@@ -26,11 +26,11 @@ public class EmployeeService {
 		return erepo.updateAccount(fname, lname, email, contactno, empid);
 	}
 	
-	public List<String> viewAllEmp(){
+	public List<Employee> viewAllEmp(){
 		return erepo.viewAllEmp();
 	}
 	
-	public List<String> viewAllManager(){
+	public List<Employee> viewAllManager(){
 		return erepo.viewAllManager();
 	}
 }

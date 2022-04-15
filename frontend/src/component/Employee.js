@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 import {
     MDBNavbar,
@@ -7,30 +7,17 @@ import {
     MDBNavbarLink,
     MDBNavbarToggler,
     MDBContainer,
-    MDBIcon,
-    MDBBtn
+    MDBIcon
   } from 'mdb-react-ui-kit';
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import UpdateProject from "./UpdateProject";
-
 
 function Employee() {
 
     const [tasks, setTasks] = useState([])
     
     let navigate = useNavigate();
-    // const[viewtaskbyproject, setviewtaskbyproject] = useState("");
     
-    // const[managerid, setManagerId] = useState("");
-    // const[projectname, setProjectname] = useState("");
-    // const[project_desc, setProjectdesc] = useState("");
-    // const[startdate, setStartdate] = useState("");
-    // const[enddate, setEnddate] = useState("");
-    // const[clientid, setClientid] = useState("");
-
-    // const search = useLocation().search;
-    // const managerid = new URLSearchParams(search).get('managerid');
     const save = JSON.parse(localStorage.getItem("loggedinuser"));
     console.log(save[1]);
     const fetchData = () => {

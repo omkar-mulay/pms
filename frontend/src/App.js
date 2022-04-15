@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes, Link } from 'react-router-dom';
+import { Route, Routes} from 'react-router-dom';
 import './App.css';
 import Login from './component/Login';
 import Admin from './component/Admin';
@@ -19,16 +19,26 @@ import ShowTasks from './component/ShowTasks';
 import UpdateTask from './component/UpdateTask';
 import UpdateStatus from './component/UpdateStatus';
 import ShowProgress from './component/ShowProgres';
-//import MainMenu from './components/MainMenu';
+import Home from './component/Home';
+import { Container, Nav, Navbar, Overlay } from "react-bootstrap";
+
 
 function App() {
     return (
     <div className='App'>
-      <h1>Project Management System</h1> <br/>
-      {/* <Link to="/login">Login</Link> <br/> */}
-      
+      <div className="overlay">
+            <div className="content">
+                <div className="content">
+                    <Navbar bg="dark" variant="dark">
+                        <Container>
+                            <Navbar.Brand href="/" style={{textAlign : "center"}}><span style={{ margin: '10px' }}></span>Project Management System</Navbar.Brand>
+                            </Container>
+                    </Navbar>
+                </div>
+            </div>
+      </div>
       <Routes>
-          <Route path="/" element={<LandinPage />} />
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/Admin" element={<Admin />} />
           <Route path="/Client" element={<Client />} />

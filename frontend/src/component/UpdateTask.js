@@ -127,6 +127,7 @@ function UpdateTask(){
       
 
 <form>
+<div className="container" style={{width: '40%', height:'50%', marginTop: '8%', marginLeft: '25', marginRight: '25%'}}>
           <div style={{ width: '23rem' }}>
                 <h4>Update Task</h4>
                     <MDBInput label='Enter Task name' name="taskname" value={task_name} type='text' size='lg' onChange={(ev)=>setTaskname(ev.target.value) }/>
@@ -150,8 +151,8 @@ function UpdateTask(){
 
                     <MDBBtn type="submit" onClick={(ev)=>submitForm(ev)}>Update</MDBBtn>
          </div>    
-
-        </form>
+</div>
+</form>
 
 
         </div>

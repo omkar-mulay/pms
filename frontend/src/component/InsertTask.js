@@ -10,17 +10,25 @@ import {
     MDBContainer,
     MDBIcon
   } from 'mdb-react-ui-kit';
+import { useEffect} from "react";
+import { Link, useLocation } from "react-router-dom";
 
 function InsertTask(){
+    const [emp, setEmp] = useState([])
+
     let navigate = useNavigate();
     const[task_name, setTaskname] = useState("");
     const[start_date, setStartdate] = useState("");
     const[end_date, setEnddate] = useState("");
-    const[projectid, setProjectid] = useState("");
+    //const[projectid, setProjectid] = useState("");
     const[status, setStatus] = useState("");
     const[description, setDescription] = useState("");
     const[priority, setPriority] = useState("");
     const[teammember_id, setTeammemberid] = useState("");
+
+    const search = useLocation().search;
+
+    const projectid = new URLSearchParams(search).get('projectid');
 
     const submitForm=(ev)=>{
         ev.preventDefault();
@@ -35,6 +43,20 @@ function InsertTask(){
             }
     })
  }
+ const fetchData = () => {
+    fetch("http://localhost:8080/view_all_emp")
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        setEmp(data)
+        console.log(data)
+      })
+}
+
+useEffect(() => {
+    fetchData()
+  }, [])
 return(
 
        <div className="container">
@@ -52,30 +74,52 @@ return(
                 <div className='collapse navbar-collapse' id='navbarExample01'>
                     <MDBNavbarNav right className='mb-2 mb-lg-0'>
                     <MDBNavbarItem active>
-                        <MDBNavbarLink aria-current='page' href='/Admin'>
+                        <MDBNavbarLink aria-current='page' href='/Manager'>
                         Home
                         </MDBNavbarLink>
                     </MDBNavbarItem>
                     <MDBNavbarItem>
-                        <MDBNavbarLink href='/Registration'>Add User</MDBNavbarLink>
+                        <MDBNavbarLink href='/ChangePassword'>Change Password</MDBNavbarLink>
                     </MDBNavbarItem>
                     <MDBNavbarItem>
-                        <MDBNavbarLink href='#'>Change Password</MDBNavbarLink>
-                    </MDBNavbarItem>
-                    <MDBNavbarItem>
-                        <MDBNavbarLink href='/CreateProject'>Create Project</MDBNavbarLink>
-                    </MDBNavbarItem>
-                    <MDBNavbarItem>
-                        <MDBNavbarLink href='#'>Settings</MDBNavbarLink>
-                    </MDBNavbarItem>
+                     <select name="setting" id="setting" className="form-control" onClick={(ev)=>navigate(ev.target.value)}>    
+                        <option value="">Settings </option>
+                        <option value="../UpdateAccount">Update Account Info </option>
+                        <option value="../Logout">Logout</option>
+                        </select>
+                     </MDBNavbarItem>
                     </MDBNavbarNav>
                 </div>
                 </MDBContainer>
             </MDBNavbar>
         </header><br/>
-      
+        List of employees:
+        <table className="table table-bordered table-hover" style={{border: 'solid'}}>
+            <thead>
+                <tr>
+                <th>Employee id</th>
+                <th>Employee first name</th>
+                <th>Employee last name</th>
+                </tr>
+            </thead>
+            <tbody>
+                    {
+                        emp.map((emp)=>{
+                            return(
+                                
+                                <tr key={emp.empid}> 
+                                   <td>{emp.empid}</td>
+                                   <td>{emp.fname}</td> 
+                                   <td>{emp.lname}</td> 
+                                </tr>
+                                ) 
+                            })
+                    }
+            </tbody>
+        </table>
 
         <form>
+        <div className="container" style={{width: '40%', height:'50%', marginTop: '8%', marginLeft: '25', marginRight: '25%'}}>
           <div style={{ width: '23rem' }}>
                 <h4>Create Task</h4>
                     <MDBInput label='Enter Task name' name="taskname" type='text' size='lg' onChange={(ev)=>setTaskname(ev.target.value) }/>
@@ -87,14 +131,14 @@ return(
                     <MDBInput label='Enter End date' name="enddate" type='date' size='lg' onChange={(ev)=>setEnddate(ev.target.value) }/>
                     <br />
 
-                    <MDBInput label='Enter project id' name="projectid" type='text' size='lg' onChange={(ev)=>setProjectid(ev.target.value) }/>
+                    <MDBInput label='Enter project id' name="projectid" value={projectid} type='disable' size='lg' />
                     <br />
 
                     <select name="status" id="status" className="form-control" onChange={(ev)=>setStatus(ev.target.value) }>    
                         <option value="">Choose status </option>
                         <option value="To do">To do</option>
                         <option value="In Progress">In progress</option>
-                        <option value="Complete">Complete</option>
+                        
                     </select>
                     <br/>
 
@@ -115,7 +159,7 @@ return(
 
                     <MDBBtn type="submit" onClick={(ev)=>submitForm(ev)}>Insert</MDBBtn>
          </div>    
-
+        </div>
         </form>
 
         </div>

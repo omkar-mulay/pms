@@ -20,9 +20,9 @@ public interface EmployeeRepositry extends JpaRepository<Employee, Integer> {
 	@Query(value="update employee e set e.fname = ?1, e.lname = ?2, e.email = ?3, e.contactno = ?4 where e.empid = ?5" , nativeQuery = true)
 	public int updateAccount(String fname, String lname, String email, String contactno, int empid);
 	
-	@Query(value="select e.empid, concat(e.fname, ' ', e.lname) 'empname' from employee e join login l on e.loginid = l.loginid where l.role = 'employee'", nativeQuery = true)
-	public List<String> viewAllEmp();
+	@Query(value="select * from employee e join login l on e.loginid = l.loginid where l.role = 'employee'", nativeQuery = true)
+	public List<Employee> viewAllEmp();
 	
-	@Query(value="select e.empid, concat(e.fname, ' ', e.lname) 'empname' from employee e join login l on e.loginid = l.loginid where l.role = 'manager'", nativeQuery = true)
-	public List<String> viewAllManager();
+	@Query(value="select * from employee e join login l on e.loginid = l.loginid where l.role = 'manager'", nativeQuery = true)
+	public List<Employee> viewAllManager();
 }

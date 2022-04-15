@@ -1,5 +1,3 @@
-import { Link, useLocation } from "react-router-dom";
-
 import {
     MDBNavbar,
     MDBNavbarNav,
@@ -7,13 +5,10 @@ import {
     MDBNavbarLink,
     MDBNavbarToggler,
     MDBContainer,
-    MDBIcon,
-    MDBBtn
+    MDBIcon
   } from 'mdb-react-ui-kit';
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import UpdateProject from "./UpdateProject";
-
 
 function Manager() {
 
