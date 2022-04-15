@@ -11,12 +11,17 @@ import {
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import moment from 'moment-timezone'
 
 function Admin() {
     const [projects, setProjects] = useState([])
 
     let navigate = useNavigate();
     
+    const formatDate = (date) => {
+        return moment(date).utc().tz('Asia/Kolkata').format('DD-MM-YYYY')
+    }
+
     const fetchData = () => {
         fetch("http://localhost:8080/show_all_projects")
           .then(response => {
@@ -107,8 +112,8 @@ function Admin() {
                                    <td>{projects.managerid}</td> 
                                    <td><a href={`/ProjectDetails?projectid=${projects.projectid}`}>{projects.projectname}</a></td> 
                                    <td>{projects.project_desc}</td> 
-                                   <td>{projects.startdate}</td>
-                                   <td>{projects.enddate}</td>
+                                   <td>{formatDate(new Date(projects.startdate))}</td>
+                                   <td>{formatDate(new Date(projects.enddate))}</td>
                                    <td>{projects.clientid}</td>
                                    <td><Link className="btn btn-info" to={`/UpdateProject?projectid=${projects.projectid}`} >Update</Link></td>
                                    <td><Button className="btn btn-danger" onClick={()=> delProj(projects.projectid, projects.projectname)}>Delete</Button></td>

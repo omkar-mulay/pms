@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import UpdateProject from "./UpdateProject";
 import { Button } from "react-bootstrap";
+import moment from 'moment-timezone';
 
 function ShowTasks() {
     const [tasks, setTasks] = useState([])
@@ -29,6 +30,9 @@ function ShowTasks() {
 
     const projectid = new URLSearchParams(search).get('projectid');
 
+    const formatDate = (date) => {
+        return moment(date).utc().tz('Asia/Kolkata').format('DD-MM-YYYY')
+    }
     const fetchData = () => {
         fetch("http://localhost:8080/view_task_by_project?projectid="+projectid)
           .then(response => {
@@ -123,8 +127,8 @@ function ShowTasks() {
                                 <tr key={task.taskid}> 
                                    <td>{task.taskid}</td>
                                    <td>{task.task_name}</td> 
-                                   <td>{task.start_date}</td> 
-                                   <td>{task.end_date}</td> 
+                                   <td>{formatDate(new Date(task.start_date))}</td> 
+                                   <td>{formatDate(new Date(task.end_date))}</td>
                                    <td>{task.projectid}</td>
                                    <td>{task.status}</td>
                                    <td>{task.description}</td>

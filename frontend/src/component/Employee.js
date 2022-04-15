@@ -11,6 +11,7 @@ import {
   } from 'mdb-react-ui-kit';
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import moment from 'moment-timezone';
 
 function Employee() {
 
@@ -20,6 +21,10 @@ function Employee() {
     
     const save = JSON.parse(localStorage.getItem("loggedinuser"));
     console.log(save[1]);
+
+    const formatDate = (date) => {
+        return moment(date).utc().tz('Asia/Kolkata').format('DD-MM-YYYY')
+    }
     const fetchData = () => {
         fetch("http://localhost:8080/show_task_by_empid?empid="+save[1])
           .then(response => {
@@ -98,8 +103,8 @@ function Employee() {
                                    <td>{tasks.taskid}</td>
                                    <td>{tasks.task_name}</td> 
                                    <td>{tasks.description}</td>
-                                   <td>{tasks.start_date}</td> 
-                                   <td>{tasks.end_date}</td>
+                                   <td>{formatDate(new Date(tasks.start_date))}</td> 
+                                   <td>{formatDate(new Date(tasks.end_date))}</td>
                                    <td>{tasks.projectid}</td>
                                    <td>{tasks.status}</td>
                                    <td><Link className="btn btn-info" to={`/UpdateStatus?taskid=${tasks.taskid}`} >Update Status</Link></td>
